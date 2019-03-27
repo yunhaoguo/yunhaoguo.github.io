@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Yunhao Blog</title>
-    <link>https://yunhaoguo.github.io/</link>
-    <description>Recent content on Yunhao Blog</description>
+    <title>Kotlin on Yunhao Blog</title>
+    <link>https://yunhaoguo.github.io/tags/kotlin/</link>
+    <description>Recent content in Kotlin on Yunhao Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 27 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://yunhaoguo.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://yunhaoguo.github.io/tags/kotlin/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,25 +21,6 @@
 Usage in Kotlin 1 Example val lambda = {arg1: Int -&amp;gt; arg1 + 1} println(lambda(2)) //等同于调用 println(lambda.invoke(2))  以上代码实现了给参数加一并返回的效果，其中lambda表达式最后一行的值是返回值，比如下面计算两个数的和的表达式中arg1 + arg2就是返回值
 val sumLambda = {arg1: Int, arg2: Int -&amp;gt; { println(&amp;quot;$arg1 + $arg2 = ${arg1 + arg2}&amp;quot;) arg1 + arg2 } } println(sumLambda(1, 2))  2 Type 在Kotlin里，每个方法都有一种类型，分别为Function0 - Function22，即最多可包含22个参数。我们使用println(&amp;lt;funcName&amp;gt;)即可得到。如下为Function2的interface：
 	/** A function that takes 2 arguments. */ public interface Function2&amp;lt;in P1, in P2, out R&amp;gt; : Function&amp;lt;R&amp;gt; { /** Invokes the function with the specified arguments.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://yunhaoguo.github.io/about/</link>
-      <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://yunhaoguo.github.io/about/</guid>
-      <description>Name: Yunhao Guo Nick Name: Big Brother Guo Birth Date: 1994-09 Job Title: Android Developer Email: yunhaoguo@foxmail.com Github: https://github.com/yunhaoguo LinkedIn: https://www.linkedin.com/in/yunhao-guo-80b1b6144</description>
-    </item>
-    
-    <item>
-      <title>First day</title>
-      <link>https://yunhaoguo.github.io/post/guoyunhao/</link>
-      <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://yunhaoguo.github.io/post/guoyunhao/</guid>
-      <description>This is my first day using blog.
-Hope I can make good a use of it.</description>
     </item>
     
   </channel>
