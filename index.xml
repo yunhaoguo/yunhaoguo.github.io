@@ -6,10 +6,21 @@
     <description>Recent content on Yunhao Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://yunhaoguo.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Flutter-Navigator</title>
+      <link>https://yunhaoguo.github.io/post/flutter-navigator/</link>
+      <pubDate>Tue, 16 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://yunhaoguo.github.io/post/flutter-navigator/</guid>
+      <description>Introduction Most apps contain several screens for displaying different types of information. For example, an app might have a screen that displays products. Users can then tap the image of a product to get more detailed information on a new screen.
+Terminology: In Flutter, screens and pages are called routes.
+In Android, a route is equivalent to an Activity. In iOS, a route is equivalent to a ViewController. In Flutter, a route is just a widget.</description>
+    </item>
     
     <item>
       <title>Kotlin-Lambda</title>

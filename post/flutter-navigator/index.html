@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        
+        Yunhao Blog
+        
+    </title>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+    <link rel='icon' type='image/x-icon' href="https://yunhaoguo.github.io/images/logo.png" />
+    <link rel="apple-touch-icon" href="https://yunhaoguo.github.io/images/logo.png"><link rel="stylesheet" href="https://yunhaoguo.github.io/scss/style.css">
+    
+    <link rel="stylesheet" href="https://yunhaoguo.github.io/scss/monokai-sublime.min.css">
+    <script src="https://yunhaoguo.github.io/js/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://yunhaoguo.github.io/scss/highlight.css">
+    
+    <link rel="stylesheet" href="https://yunhaoguo.github.io/scss/custom.css">
+    
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'Your Google Analytics tracking id', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+    
+    <meta name="generator" content="Hugo 0.53" /></head>
+
+<body>
+<div class="header">
+    <div class="site-logo__wrap">
+        <div id="site-button">
+            <div></div>
+        </div>
+        
+        <div class=' site-logo '>
+            <a href="https://yunhaoguo.github.io/"><img src="https://yunhaoguo.github.io/images/logo.png" /></a>
+        </div>
+    </div>
+    
+<div class=' site-nav u-font ' id="nav-bar">
+    
+    <div class="site-nav__wrap">
+        <a class="site-nav__el" href="/" >HOME</a>
+    </div>
+    
+    <div class="site-nav__wrap">
+        <a class="site-nav__el" href="/post" >BLOG</a>
+    </div>
+    
+    <div class="site-nav__wrap">
+        <a class="site-nav__el" href="/about" >ABOUT</a>
+    </div>
+    
+    <div class="site-nav__wrap">
+        <a class="site-nav__el" href="/tags/" >TAGS</a>
+    </div>
+    
+</div>
+</div>
+<div class="main">
+
+<div class="main-content">
+    <div class="main-content__date">
+        <h4 id="date"> 2019.04.16 00:00 </h4>
+    </div>
+    <div class="main-content__title">
+        <h1 id="title">Flutter-Navigator</h1>
+    </div>
+    <div class="main-content__article">
+        <article id="content">
+            
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Most apps contain several screens for displaying different types of information. For example, an app might have a screen that displays products. Users can then tap the image of a product to get more detailed information on a new screen.<br />
+<strong>Terminology: In Flutter, screens and pages are called routes.</strong><br />
+In Android, a route is equivalent to an Activity. In iOS, a route is equivalent to a ViewController. In Flutter, a route is just a widget.<br />
+How do you navigate to a new route? By using the <strong>Navigator</strong>.</p>
+
+<h1 id="usage">Usage</h1>
+
+<h3 id="navigate">Navigate</h3>
+
+<p>1.Create two routes<br />
+2.Navigate to the second route using <strong>Navigator.push()</strong><br />
+3.Return to the first route using <strong>Navigator.pop()</strong></p>
+
+<h5 id="method-1-simple">Method 1: Simple</h5>
+
+<pre><code>	void main() =&gt; runApp(
+	  MaterialApp(
+	    home: FirstScreen(),
+	  )
+	);
+	class FirstScreen extends StatelessWidget {
+	  @override
+	  Widget build(BuildContext context) {
+	    return Scaffold(
+	      appBar: AppBar(
+	        title: Text('First Screen'),
+	      ),
+	      body: Center(
+	        child: RaisedButton(
+	          child: Text('Launch Screen'),
+	          onPressed: () {
+	            Navigator.push(
+	              context,
+	              MaterialPageRoute(builder: (context) =&gt; SecondScreen()),
+	            );
+	          },
+	          ),
+	      ),
+	    );
+	  }
+	}
+	class SecondScreen extends StatelessWidget {
+	  @override
+	  Widget build(BuildContext context) {
+	    return Scaffold(
+	      appBar: AppBar(
+	        title: Text('Second Screen'),
+	      ),
+	      body: Center(
+	        child: RaisedButton(
+	          child: Text('Back Screen'),
+	          onPressed: () {
+	            Navigator.pop(context);
+	          },
+	        ),
+	      ),
+	    );
+	  }
+	}
+</code></pre>
+
+<h5 id="method-2-name-routes">Method 2: Name Routes</h5>
+
+<p>First, modify the main method and add routes in it:</p>
+
+<pre><code>	void main() =&gt; runApp(MaterialApp(
+	  initialRoute: '/',
+	  routes: {
+	    '/': (context) =&gt; FirstScreen(),
+	    '/second': (context) =&gt; SecondScreen(),
+	  },
+	));
+</code></pre>
+
+<p>Then, modify the push method to <code>Navigator.pushNamed(context, &lt;routeName&gt;)</code></p>
+
+<h3 id="send-data">Send Data</h3>
+
+<p>Use the constructor of a class to pass data.<br />
+Let&rsquo;s take a TODO app as an example, below is the key codes for passing data from main screen to detail screen.</p>
+
+<pre><code>	Navigator.push(
+	  context,
+	  MaterialPageRoute(
+	    builder: (context) =&gt; DetailScreen(todo: todos[index]),
+	  )
+	)
+</code></pre>
+
+<pre><code>	class DetailScreen extends StatelessWidget{
+	  final Todo todo;
+	  DetailScreen({Key key, @required this.todo}) : super(key: key);
+	  @override
+	  Widget build(BuildContext context) {
+	    return Scaffold(
+	      appBar: AppBar(
+	        title: Text(todo.title),
+	      ),
+	      body: Padding(
+	        padding: EdgeInsets.all(16.0),
+	        child: Text(todo.description),
+	      ),
+	    );
+	  }
+	}
+</code></pre>
+
+<h3 id="return-data">Return Data</h3>
+
+<p>Use synchronized method to receive the returning data and show them on the screen.</p>
+
+<pre><code>	_navigateAndDisplaySelection(BuildContext context) async {
+	  final result = await Navigator.push(
+	    context,
+	    MaterialPageRoute(
+	      builder: (context) =&gt; SelectionScreen(),
+	    ),
+	  );
+
+	  Scaffold.of(context)
+	    ..removeCurrentSnackBar()
+	    ..showSnackBar(SnackBar(content: Text(&quot;$result&quot;)));
+	}
+</code></pre>
+
+<p>On the second screen, put data in the second parameter in <code>Navigator.pop(context, 'Yep!')</code> to return data.</p>
+
+        </article>
+    </div>
+    <div class="main-content__tags u-font">
+        
+        
+        <span><a href="https://yunhaoguo.github.io/tags/flutter">flutter</a></span>
+        
+        
+    </div>
+</div>
+<div class="main-profile">
+    <div class="main-profile__avatar">
+        
+    </div>
+    <div class="main-profile__body">
+        <div class="main-profile__author">
+            
+            <span> Yunhao </span>
+            
+        </div>
+        <div class="main-profile__description">
+            
+            <p> All life is a game of luck. </p>
+            
+        </div>
+    </div>
+</div>
+<div class="main-line"></div>
+<div class="main-pn">
+    
+    <a class="previous" href="https://yunhaoguo.github.io/post/lambdainkotlin/">
+        <div class="pn-dec"></div>
+        <div class="pn-els">
+            <div class="pn-el__1"> 2019.03.27 00:00 </div>
+            <div class="pn-el__2"> Kotlin-Lambda </div>
+        </div>
+    </a>
+    
+    
+</div>
+
+</div>
+<div class="footer">
+    <div class="copyright-wrap">
+        <p class="copyright u-font">
+            
+            &#169;
+            2019
+            
+            <a href="https://yunhaoguo.github.io/" target="_blank">Author&#46;</a>
+            Theme <a href="https://github.com/iCyris/hugo-theme-yuki" target="_blank">yuki</a>&#46;
+            Powered by Hugo&#46;
+            
+            
+        </p>
+    </div>
+</div>
+</body>
+<script src="https://yunhaoguo.github.io/js/page.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
