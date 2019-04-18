@@ -65,38 +65,107 @@
 <div class="main">
 
 <div class="main-content">
-    
-    <div class="main-content__title title-type__custom u-font">
-        <h1 id="title">Tags</h1>
+    <div class="main-content__date">
+        <h4 id="date"> 2019.04.18 00:00 </h4>
     </div>
+    <div class="main-content__title">
+        <h1 id="title">Flutter-Http</h1>
+    </div>
+    <div class="main-content__article">
+        <article id="content">
+            
 
-    <article>
-        <div class="main-content__posts index-posts">
-            
-            
+<h1 id="usage">Usage</h1>
 
+<h3 id="add-dependency">Add Dependency</h3>
+
+<p>Under dependencies in pubspec.yaml, add the following codes:</p>
+
+<pre><code>  http: ^latest_version
+</code></pre>
+
+<h3 id="request-example">Request Example</h3>
+
+<p>First, define a class model to hold the data received from internet:</p>
+
+<pre><code>class CommonModel {
+  final String icon;
+  final String title;
+  final String url;
+  final String statusBarColor;
+  final bool hideAppBar;
+
+  CommonModel({this.icon, this.title, this.url, this.statusBarColor, this.hideAppBar});
+
+  factory CommonModel.fromJson(Map&lt;String, dynamic&gt; json) {
+    return CommonModel(
+      icon: json['icon'],
+      title: json['title'],
+      url: json['url'],
+      statusBarColor: json['statusBarColor'],
+      hideAppBar: json['hideAppBar'],
+    );
+  }
+}
+</code></pre>
+
+<p>Then, define a asynchronous method to send a request:</p>
+
+<pre><code>Future&lt;CommonModel&gt; fetchPost() async {
+  final response = await http.get('http://www.devio.org/io/flutter_app/json/test_common_model.json');
+  final res = json.decode(response.body);
+  return CommonModel.fromJson(res);
+}
+</code></pre>
+
+<p>Finally, set the layout to show the result: (just the request method is shown)</p>
+
+<pre><code>fetchPost().then((value) {
+  setState(() {
+    result = 'hideAppBar: ${value.hideAppBar} icon: ${value.icon}';
+  });
+});
+</code></pre>
+
+        </article>
+    </div>
+    <div class="main-content__tags u-font">
+        
+        
+        <span><a href="https://yunhaoguo.github.io/tags/flutter">flutter</a></span>
+        
+        
+    </div>
+</div>
+<div class="main-profile">
+    <div class="main-profile__avatar">
+        
+    </div>
+    <div class="main-profile__body">
+        <div class="main-profile__author">
             
-            
-            <span class="mpl-t-wrap">
-               <a href="https://yunhaoguo.github.io/tags/flutter">flutter
-                   <span>(2)</span>
-               </a>
-            </span>
-            
-            <span class="mpl-t-wrap">
-               <a href="https://yunhaoguo.github.io/tags/kotlin">kotlin
-                   <span>(1)</span>
-               </a>
-            </span>
-            
-            <span class="mpl-t-wrap">
-               <a href="https://yunhaoguo.github.io/tags/life">life
-                   <span>(1)</span>
-               </a>
-            </span>
+            <span> Yunhao </span>
             
         </div>
-    </article>
+        <div class="main-profile__description">
+            
+            <p> All life is a game of luck. </p>
+            
+        </div>
+    </div>
+</div>
+<div class="main-line"></div>
+<div class="main-pn">
+    
+    <a class="previous" href="https://yunhaoguo.github.io/post/flutter-navigator/">
+        <div class="pn-dec"></div>
+        <div class="pn-els">
+            <div class="pn-el__1"> 2019.04.16 00:00 </div>
+            <div class="pn-el__2"> Flutter-Navigator </div>
+        </div>
+    </a>
+    
+    
 </div>
 
 </div>
@@ -118,3 +187,4 @@
 </body>
 <script src="https://yunhaoguo.github.io/js/page.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+
