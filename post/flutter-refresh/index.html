@@ -65,38 +65,118 @@
 <div class="main">
 
 <div class="main-content">
-    
-    <div class="main-content__title title-type__custom u-font">
-        <h1 id="title">Tags</h1>
+    <div class="main-content__date">
+        <h4 id="date"> 2019.04.21 00:00 </h4>
     </div>
+    <div class="main-content__title">
+        <h1 id="title">Flutter-Refresh</h1>
+    </div>
+    <div class="main-content__article">
+        <article id="content">
+            
 
-    <article>
-        <div class="main-content__posts index-posts">
-            
-            
+<h1 id="listview的下拉刷新和上拉加载">ListView的下拉刷新和上拉加载</h1>
 
+<h3 id="refreshindicator-下拉刷新">RefreshIndicator(下拉刷新)</h3>
+
+<p>要实现下拉刷新，只需要在ListView外部添加一个RefreshIndicator组件，同时设置它的onRefresh属性即可</p>
+
+<pre><code>Future&lt;Null&gt; _handleRefresh() async {
+  await Future.delayed(Duration(seconds: 2));
+  setState(() {
+    //...
+  });
+}
+
+@override
+Widget build(BuildContext context) {
+  return MaterialApp(
+    home: Scaffold(
+        appBar: AppBar(
+          title: Text('City List'),
+        ),
+        body: RefreshIndicator(
+          onRefresh: _handleRefresh,
+          child: ListView(
+            children: _buildList(),
+          ),
+        )
+    ),
+  );
+}
+</code></pre>
+
+<h3 id="scrollcontroller-上拉加载">ScrollController(上拉加载)</h3>
+
+<p>要实现上拉加载，只需要为ListView组件设置controller属性，监听是否上划到底的行为即可</p>
+
+<pre><code>ScrollController _scrollController = ScrollController();
+
+@override
+void initState() {
+  _scrollController.addListener(() {
+    if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+      _loadData();
+    }
+  });
+  super.initState();
+}
+
+@override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('City List'),
+          ),
+          body: ListView(
+            controller: _scrollController,
+            children: _buildList(),
+          ),
+      ),
+    );
+  }
+</code></pre>
+
+        </article>
+    </div>
+    <div class="main-content__tags u-font">
+        
+        
+        <span><a href="https://yunhaoguo.github.io/tags/flutter">flutter</a></span>
+        
+        
+    </div>
+</div>
+<div class="main-profile">
+    <div class="main-profile__avatar">
+        
+    </div>
+    <div class="main-profile__body">
+        <div class="main-profile__author">
             
-            
-            <span class="mpl-t-wrap">
-               <a href="https://yunhaoguo.github.io/tags/flutter">flutter
-                   <span>(3)</span>
-               </a>
-            </span>
-            
-            <span class="mpl-t-wrap">
-               <a href="https://yunhaoguo.github.io/tags/kotlin">kotlin
-                   <span>(1)</span>
-               </a>
-            </span>
-            
-            <span class="mpl-t-wrap">
-               <a href="https://yunhaoguo.github.io/tags/life">life
-                   <span>(1)</span>
-               </a>
-            </span>
+            <span> Yunhao </span>
             
         </div>
-    </article>
+        <div class="main-profile__description">
+            
+            <p> All life is a game of luck. </p>
+            
+        </div>
+    </div>
+</div>
+<div class="main-line"></div>
+<div class="main-pn">
+    
+    <a class="previous" href="https://yunhaoguo.github.io/post/flutter-http/">
+        <div class="pn-dec"></div>
+        <div class="pn-els">
+            <div class="pn-el__1"> 2019.04.18 00:00 </div>
+            <div class="pn-el__2"> Flutter-Http </div>
+        </div>
+    </a>
+    
+    
 </div>
 
 </div>
@@ -118,3 +198,4 @@
 </body>
 <script src="https://yunhaoguo.github.io/js/page.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+

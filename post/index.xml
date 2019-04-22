@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Yunhao Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://yunhaoguo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Flutter-Refresh</title>
+      <link>https://yunhaoguo.github.io/post/flutter-refresh/</link>
+      <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://yunhaoguo.github.io/post/flutter-refresh/</guid>
+      <description> ListView的下拉刷新和上拉加载 RefreshIndicator(下拉刷新) 要实现下拉刷新，只需要在ListView外部添加一个RefreshIndicator组件，同时设置它的onRefresh属性即可
+Future&amp;lt;Null&amp;gt; _handleRefresh() async { await Future.delayed(Duration(seconds: 2)); setState(() { //... }); } @override Widget build(BuildContext context) { return MaterialApp( home: Scaffold( appBar: AppBar( title: Text(&#39;City List&#39;), ), body: RefreshIndicator( onRefresh: _handleRefresh, child: ListView( children: _buildList(), ), ) ), ); }  ScrollController(上拉加载) 要实现上拉加载，只需要为ListView组件设置controller属性，监听是否上划到底的行为即可
+ScrollController _scrollController = ScrollController(); @override void initState() { _scrollController.addListener(() { if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) { _loadData(); } }); super.initState(); } @override Widget build(BuildContext context) { return MaterialApp( home: Scaffold( appBar: AppBar( title: Text(&#39;City List&#39;), ), body: ListView( controller: _scrollController, children: _buildList(), ), ), ); }  </description>
+    </item>
     
     <item>
       <title>Flutter-Http</title>
